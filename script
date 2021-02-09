@@ -1,0 +1,10 @@
+#!bin/bash
+dirName=$1
+fromSize=$2
+toSize=$3
+fileName=$4
+#find /home/yura/ -not -path "*/\.*" -size +0M -size -3M
+#find /home/yura/ -not -path "*/\.*" -type f -size +0 -size -2000
+find $dirName -not -path "*/\.*" -type f -size +${fromSize} -size -${toSize} -printf "%h, %f, %s\n" >testout.txt
+find $dirName -not -path "*/\.*" -type f> temp.txt
+wc temp.txt -l | sed -r 's/ .+//'
